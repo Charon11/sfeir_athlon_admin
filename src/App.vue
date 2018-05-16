@@ -17,13 +17,11 @@
 
   body {
     margin: 0;
-    background: #ececec;
   }
 
   md-app {
     max-height: 400px;
     border: 1px solid rgba(#000, .12);
-    background: #ececec;
   }
 
   #app {
@@ -31,16 +29,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    background: #ececec;
   }
 
   main {
     text-align: center;
-    background: #ececec;
-  }
-
-  div {
-    background: #ececec;
   }
 
 

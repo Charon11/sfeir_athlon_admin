@@ -90,12 +90,10 @@
 <style lang="scss" scoped>
 
   .md-app-content {
-    background: #ececec;
     max-height: 100vh;
   }
 
   .md-app {
-    background: #ececec;
     max-height: 100vh;
     border: 1px solid rgba(#000, .12);
   }
