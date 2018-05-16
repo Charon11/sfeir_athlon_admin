@@ -7,33 +7,41 @@
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app'
+  }
 </script>
 
 <style scoped lang="scss">
   @import "~vue-material/dist/base/theme"; // Apply the theme
 
-body {
-  margin: 0;
-  background: #ececec;
-}
+  body {
+    margin: 0;
+    background: #ececec;
+  }
 
-md-app {
-  max-height: 400px;
-  border: 1px solid rgba(#000, .12);
-}
+  md-app {
+    max-height: 400px;
+    border: 1px solid rgba(#000, .12);
+    background: #ececec;
+  }
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    background: #ececec;
+  }
 
-main {
-  text-align: center;
-}
+  main {
+    text-align: center;
+    background: #ececec;
+  }
+
+  div {
+    background: #ececec;
+  }
+
 
 </style>
