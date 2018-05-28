@@ -1,70 +1,110 @@
 <template>
   <div>
-    <md-app md-waterfall md-mode="fixed">
-      <md-app-toolbar class="md-primary">
-        <span class="md-title" @click="getTeamLeaders">Sfeir'Athlon Admin</span>
-      </md-app-toolbar>
-      <md-app-content>
-        <competitor v-for="tl in teamLeaders" :updateMethod="getTeamLeaders" :teamLeader="tl"></competitor>
-      </md-app-content>
-    </md-app>
-    <md-button class="md-fab md-primary" @click="showDialog = true">
-      <md-icon>add</md-icon>
-    </md-button>
+    <v-app>
+      <v-toolbar color="indigo" dark fixed app>
+        <v-toolbar-title @click="getEvents">Sfeir'Athlon Admin</v-toolbar-title>
+      </v-toolbar>
+      <v-content>
+        <v-container fluid fill-height>
+          <v-layout justify-center>
+            <event v-for="event in events" :team-leaders="teamLeaders" :event="event"
+                   :update-method="refreshEvents"></event>
+          </v-layout>
+        </v-container>
+      </v-content>
 
-    <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title>Team Leader</md-dialog-title>
-      <competitor-form :teamLeader="tl"></competitor-form>
-      <md-dialog-actions>
-        <md-button class="md-primary" @click="showDialog = false">
-          <md-icon>clear</md-icon></md-button>
-        <md-button class="md-primary" @click="saveTeamLeader">
-          <md-icon>save</md-icon></md-button>
-      </md-dialog-actions>
-    </md-dialog>
+      <v-btn
+        id="addbtn"
+        absolute
+        dark
+        fab
+        bottom
+        right
+        color="pink"
+        @click="showDialog = true"
+      >
+        <v-icon>add</v-icon>
+      </v-btn>
+    </v-app>
+
+    <v-dialog v-model="showDialog">
+      <event-form :eventId="''" :team-leaders="teamLeaders" :update-event="refreshEvents"></event-form>
+    </v-dialog>
+
   </div>
 </template>
 
 <script>
-  import db from '../firebase/firebaseInit'
+  import db from '../firebase/firestoreInit'
   import Competitor from './Competitor.vue'
   import CompetitorForm from './Competitor-Form.vue'
+  import Event from './Event'
+  import EventForm from './Event-Form'
 
   export default {
 
-    components: {Competitor, CompetitorForm},
+    components: {EventForm, Event, Competitor, CompetitorForm},
     name: 'home',
     data () {
       return {
         teamLeaders: [],
+        events: [],
         showDialog: false,
         tl: {
           'identifier': ''
+        },
+        event: {
+          'identifier': null
         }
       }
     },
 
     created () {
       this.getTeamLeaders()
+      this.getEvents()
     },
     methods: {
+
+      refreshEvents () {
+        this.showDialog = false
+        this.getEvents()
+      },
+
       getTeamLeaders () {
-        this.teamLeaders = []
-        db.collection('classement').get().then((querySnapshot) => {
+        db.collection('team-leaders').get().then((querySnapshot) => {
+          this.teamLeaders = []
           querySnapshot.forEach((doc) => {
             let tl = {
               'identifier': doc.id,
               'lastname': doc.data().lastname,
               'firstname': doc.data().firstname,
-              'points': doc.data().points,
-              'photo': doc.data().photo,
-              'trigramme': doc.data().trigramme,
-              'classement': doc.data().classement
+              'photo': doc.data().photo
             }
             this.teamLeaders.push(tl)
           })
         })
       },
+      getEvents () {
+        this.events = []
+        db.collection('events').get().then((querySnapshot) => {
+          this.events = []
+          querySnapshot.forEach((doc) => {
+            this.events.push({
+              'identifier': doc.id,
+              'url': doc.data().url,
+              'name': doc.data().name,
+              'date': doc.data().date,
+              'eventDate': new Date(doc.data().date.seconds * 1000),
+              'classement': doc.data().classement.map(c => {
+                c.teamleader = {}
+                return c
+              }).sort((a, b) => a.rank - b.rank)
+            })
+          })
+          this.events = this.events.sort((a, b) => b.date.seconds - a.date.seconds)
+        })
+      },
+
       saveTeamLeader () {
         db.collection('classement').doc().set(
           {
@@ -89,18 +129,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-  .md-app-content {
-    max-height: 100vh;
-  }
-
-  .md-app {
-    max-height: 100vh;
-    border: 1px solid rgba(#000, .12);
-  }
-
-  .md-fab {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
+  #addbtn {
+    bottom: 30px;
   }
 </style>

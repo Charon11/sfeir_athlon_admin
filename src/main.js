@@ -5,9 +5,16 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueMaterial from 'vue-material'
+import Vuetify from 'vuetify'
 import 'vue-material/dist/vue-material.min.css'
+import DateFilter from './filters/date'
+import EventSorter from './filters/sort-event'
+
+Vue.use(Vuetify)
 
 Vue.use(VueMaterial)
+Vue.filter('date', DateFilter)
+Vue.filter('sortEvent', EventSorter)
 
 Vue.config.productionTip = false
 

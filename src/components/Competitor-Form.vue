@@ -36,7 +36,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .md-field {
     margin: 10px;
     width: 90%;

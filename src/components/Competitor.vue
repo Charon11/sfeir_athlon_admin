@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import db from '../firebase/firebaseInit'
+  import db from '../firebase/firestoreInit'
   import CompetitorForm from './Competitor-Form.vue'
 
   export default {
