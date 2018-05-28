@@ -5,11 +5,13 @@
         <v-toolbar-title @click="getEvents">Sfeir'Athlon Admin</v-toolbar-title>
       </v-toolbar>
       <v-content>
-        <v-container fluid fill-height>
-          <v-layout justify-center>
+        <v-container
+          fluid
+          style="min-height: 0;"
+          grid-list-lg
+        >
             <event v-for="event in events" :team-leaders="teamLeaders" :event="event"
                    :update-method="refreshEvents"></event>
-          </v-layout>
         </v-container>
       </v-content>
 
@@ -28,7 +30,8 @@
     </v-app>
 
     <v-dialog v-model="showDialog">
-      <event-form :eventId="''" :team-leaders="teamLeaders" :update-event="refreshEvents"></event-form>
+
+        <event-form :eventId="''" :team-leaders="teamLeaders" :update-event="refreshEvents"></event-form>
     </v-dialog>
 
   </div>
