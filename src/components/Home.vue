@@ -17,7 +17,7 @@
 
       <v-btn
         id="addbtn"
-        absolute
+        fixed
         dark
         fab
         bottom
@@ -30,7 +30,6 @@
     </v-app>
 
     <v-dialog v-model="showDialog">
-
         <event-form :eventId="''" :team-leaders="teamLeaders" :update-event="refreshEvents"></event-form>
     </v-dialog>
 

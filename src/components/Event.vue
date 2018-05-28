@@ -45,7 +45,7 @@
     </v-dialog>
 
     <v-snackbar
-      bottom
+      top
       :timeout="duration"
       v-model="showSnackbar">
       <span>Are you sure you want to delete {{event.name}} ?!</span>
