@@ -228,10 +228,6 @@
 </script>
 
 <style scoped lang="scss">
-  .v-card {
-    margin: 10px;
-    width: 90%;
-  }
 
   .section {
     width: 400px;
