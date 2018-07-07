@@ -95,6 +95,7 @@
               'identifier': doc.id,
               'url': doc.data().url,
               'name': doc.data().name,
+              'register': doc.data().register,
               'date': doc.data().date,
               'eventDate': new Date(doc.data().date.seconds * 1000),
               'classement': doc.data().classement.map(c => {

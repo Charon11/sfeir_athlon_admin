@@ -25,6 +25,14 @@
           </v-flex>
         </v-layout>
         <v-layout row>
+          <v-flex xs12>
+            <v-text-field
+              label="Url register"
+              v-model="event.register"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
           <v-flex xs12 lg6>
             <v-menu
               ref="menu1"
@@ -145,6 +153,7 @@
         const event = {
           'name': this.event.name,
           'url': this.event.url,
+          'register': this.event.register,
           'date': this.event.date,
           'classement': this.event.classement.map(c => {
             return {
@@ -191,6 +200,7 @@
           'identifier': '',
           'url': '',
           'name': '',
+          'register': '',
           'date': null,
           'eventDate': null,
           'classement': []
@@ -208,6 +218,7 @@
               'url': doc.data().url,
               'name': doc.data().name,
               'date': doc.data().date,
+              'register': doc.data().register,
               'eventDate': new Date(doc.data().date.seconds * 1000),
               'classement': doc.data().classement.map(c => {
                 c.teamleader = {}
