@@ -74,7 +74,7 @@
                       </v-btn>
                     </v-list-tile-action>
                   </v-list-tile>
-                  <v-list-tile v-for="rank in event.classement">
+                  <v-list-tile v-for="rank in event.classement" :key="rank.tl.id">
                     <v-list-tile-content>
                       <event-rank-form :eventRank="rank" :team-leaders="teamLeaders"></event-rank-form>
                     </v-list-tile-content>

@@ -16,7 +16,7 @@
               <v-expansion-panel-content>
                 <div slot="header">Classement</div>
                 <v-list>
-                  <v-list-tile v-for="rank in event.classement">
+                  <v-list-tile v-for="rank in event.classement" :key="rank.tl.id">
                     <v-list-tile-content>
                       <event-rank :eventRank="rank"></event-rank>
                     </v-list-tile-content>

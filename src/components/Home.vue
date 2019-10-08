@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app>
-      <v-toolbar color="indigo" dark fixed app>
+      <v-toolbar color="indigo" fixed app>
         <v-toolbar-title @click="getEvents">Sfeir'Athlon Admin</v-toolbar-title>
       </v-toolbar>
       <v-content>
@@ -10,15 +10,16 @@
           style="min-height: 0;"
           grid-list-lg
         >
-            <event v-for="event in events" :team-leaders="teamLeaders" :event="event"
-                   :update-method="refreshEvents"></event>
+            <event v-for="event in events" 
+              :key="event.identifier"
+              :team-leaders="teamLeaders" :event="event"
+              :update-method="refreshEvents"></event>
         </v-container>
       </v-content>
 
       <v-btn
         id="addbtn"
         fixed
-        dark
         fab
         bottom
         right
@@ -86,6 +87,9 @@
           })
         })
       },
+      /**
+       * Get all the events produce by sfeir.
+       */
       getEvents () {
         this.events = []
         db.collection('events').get().then((querySnapshot) => {

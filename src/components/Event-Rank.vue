@@ -21,9 +21,11 @@
 
     created () {
       this.eventRank.tl.get().then(x => {
-        this.eventRank.teamleader = {
-          'firstname': x.data().firstname,
-          'lastname': x.data().lastname
+        if (x.data()) {
+          this.eventRank.teamleader = {
+            'firstname': x.data().firstname,
+            'lastname': x.data().lastname
+          }
         }
       })
     },
