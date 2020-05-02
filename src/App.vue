@@ -1,39 +1,34 @@
 <template>
-  <div id="app">
-    <main>
-      <router-view></router-view>
-    </main>
-  </div>
+  <v-app>
+    <router-view/>
+  </v-app>
 </template>
 
 <script>
-  export default {
-    name: 'app'
-  }
+export default {
+  name: 'app'
+}
 </script>
 
-<style scoped lang="scss">
-  @import "~vue-material/dist/base/theme"; // Apply the theme
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-  body {
-    margin: 0;
-  }
+#nav {
+  padding: 30px;
+}
 
-  md-app {
-    max-height: 400px;
-    border: 1px solid rgba(#000, .12);
-  }
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
 
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-  }
-
-  main {
-    text-align: center;
-  }
-
-
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
