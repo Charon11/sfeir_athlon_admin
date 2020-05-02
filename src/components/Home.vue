@@ -12,7 +12,8 @@
         >
             <event v-for="event in events" 
               :key="event.identifier"
-              :team-leaders="teamLeaders" :event="event"
+              :team-leaders="teamLeaders" 
+              :event="event"
               :update-method="refreshEvents"></event>
         </v-container>
       </v-content>

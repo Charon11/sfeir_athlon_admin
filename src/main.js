@@ -4,15 +4,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import VueMaterial from 'vue-material'
-import Vuetify from 'vuetify'
-import 'vue-material/dist/vue-material.min.css'
 import DateFilter from './filters/date'
 import EventSorter from './filters/sort-event'
-
-Vue.use(Vuetify)
-
-Vue.use(VueMaterial)
+import vuetify from './plugins/vuetify'
 Vue.filter('date', DateFilter)
 Vue.filter('sortEvent', EventSorter)
 
@@ -23,5 +17,6 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
+  vuetify,
   components: { App }
 })
