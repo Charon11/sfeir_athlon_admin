@@ -93,6 +93,9 @@ export default {
       this.showCompetitor = false
       this.getEvents()
     },
+    /**
+     * Get all the team leader of sfeir.
+     */
     getTeamLeaders () {
       db.collection('team-leaders').get().then((querySnapshot) => {
         this.teamLeaders = []
