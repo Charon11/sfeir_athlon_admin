@@ -142,23 +142,24 @@ export default {
         'url': this.event.url,
         'register': this.event.register,
         'date': this.event.date,
-        'classement': this.event.classement.map(c => {
+        'individualClassement': this.event.classement.map(c => {
+          console.log(c)
           return {
             'rank': parseInt(c.rank),
-            'points': parseInt(c.points),
-            'tl': c.tl
+            'sfeirien': parseInt(c.team.id),
+            'team': c.team
           }
         })
       }
       if (this.event.identifier) {
-        db.collection('events').doc(this.event.identifier).set(
+        db.collection('events-2019').doc(this.event.identifier).set(
           event
         ).then(() => {
           this.emptyEvent()
           this.updateEvent()
         })
       } else {
-        db.collection('events').doc().set(
+        db.collection('events-2019').doc().set(
           event
         ).then(() => {
           this.emptyEvent()
@@ -201,7 +202,7 @@ export default {
   },
   created () {
     if (this.eventId) {
-      db.collection('events').doc(this.eventId).onSnapshot(doc => {
+      db.collection('events-2019').doc(this.eventId).onSnapshot(doc => {
         if (doc.exists) {
           this.event = {
             'identifier': doc.id,
@@ -210,7 +211,7 @@ export default {
             'date': doc.data().date,
             'register': doc.data().register,
             'eventDate': new Date(doc.data().date.seconds * 1000),
-            'classement': doc.data().classement.map(c => {
+            'classement': doc.data().individualClassement.map(c => {
               c.teamleader = {}
               return c
             }).sort((a, b) => a.rank - b.rank)

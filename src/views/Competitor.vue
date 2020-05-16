@@ -1,14 +1,9 @@
 <template>
   <section>
-    <v-card>
+    <v-card width="300">
         <v-card-title>
           <span class="v-title">{{ fullName }}</span>
         </v-card-title>
-
-        <v-card-text>
-          <!-- TODO: add rank -->
-          Points : {{teamLeader.points}}
-        </v-card-text>
         <v-card-actions class="competitor-actions">
           <v-btn v-if="teamLeader.firstname !== undefined" depressed color="gray" @click="showSnackbar = true">
             <span style="color: darkgray;">Delete</span>
@@ -19,8 +14,8 @@
         </v-card-actions>
     </v-card>
 
-    <v-dialog v-model="showDialog">
-      <v-card>
+    <v-dialog v-model="showDialog" >
+      <v-card style="competitor-form">
         <v-card-title>Team Leader</v-card-title>
 
         <v-card-text>
@@ -112,5 +107,8 @@ section {
 }
 .action-edit {
   color: white;
+}
+.competitor-form {
+  width: 300px;
 }
 </style>

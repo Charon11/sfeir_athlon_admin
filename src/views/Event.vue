@@ -33,7 +33,7 @@
               <v-card-text>
                 <v-list dense>
                   <v-list-item-group>
-                    <v-list-item v-for="rank in event.classement" :key="rank.tl.id">
+                    <v-list-item v-for="rank in event.classement" :key="rank.sfeirien">
                       <v-list-item-content>
                         <event-rank :eventRank="rank"></event-rank>
                       </v-list-item-content>

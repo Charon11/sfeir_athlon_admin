@@ -1,6 +1,6 @@
 <template>
   <div class="event-rank">
-    {{eventRank.rank}}. {{eventRank.teamleader.firstname}} {{eventRank.teamleader.lastname}} - {{eventRank.points}} points
+    {{eventRank.rank}}. {{eventRank.teamleader.firstname}} {{eventRank.teamleader.lastname}}
     <v-avatar v-show="eventRank.teamleader != '' ||  eventRank.teamleader != null || eventRank.teamleader != undefined">
       <img
         :src="eventRank.teamleader.photo"
@@ -14,7 +14,7 @@ export default {
   name: 'event-rank',
   props: ['eventRank'],
   created () {
-    this.eventRank.tl.get().then(x => {
+    this.eventRank.team.get().then(x => {
       if (x.data()) {
         this.eventRank.teamleader = {
           'firstname': x.data().firstname,

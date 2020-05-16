@@ -1,7 +1,7 @@
 <template>
   <section class="event-rank-form">
     <v-layout row wrap class="layout-rank-form">
-      <v-flex xs2>
+      <v-flex xs3>
         <v-text-field
           name="rank-input"
           label="Rank"
@@ -12,7 +12,7 @@
           reverse
         ></v-text-field>
       </v-flex>
-      <v-flex xs6>
+      <v-flex xs7>
         <v-select
           :items="tls"
           :filter="customFilter"
@@ -23,17 +23,6 @@
           chips
           color="#f00b51"
         ></v-select>
-      </v-flex>
-      <v-flex xs2>
-        <v-text-field
-          name="points-input"
-          label="Points"
-          single-line
-          mask="##"
-          v-model="eventRank.points"
-          reverse
-          color="#f00b51"
-        ></v-text-field>
       </v-flex>
     </v-layout>
   </section>
@@ -58,7 +47,7 @@ export default {
   },
   methods: {
     teamLeaderChange (value) {
-      this.eventRank.tl = db.collection('team-leaders').doc(value)
+      this.eventRank.team = db.collection('team-leaders').doc(value)
     }
   },
   computed: {
@@ -67,7 +56,7 @@ export default {
     },
 
     tl () {
-      return this.eventRank.tl ? this.eventRank.tl.id : ''
+      return this.eventRank.team ? this.eventRank.team.id : ''
     }
   }
 }

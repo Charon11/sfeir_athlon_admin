@@ -28,7 +28,7 @@
       <v-icon color="#FFFFFF">mdi-account-multiple-plus</v-icon>
     </v-btn>
 
-    <v-dialog v-model="showCompetitor">
+    <v-dialog v-model="showCompetitor" width="310">
       <competitor v-if="showCompetitor" :team-leader="{}" :update-event="refreshEvents"></competitor>
     </v-dialog>
 
@@ -113,7 +113,7 @@ export default {
     getEvents () {
       this.overlay = true
       this.events = []
-      db.collection('events').get().then((querySnapshot) => {
+      db.collection('events-2019').get().then((querySnapshot) => {
         this.events = []
         querySnapshot.forEach((doc) => {
           this.events.push({
@@ -123,7 +123,7 @@ export default {
             'register': doc.data().register,
             'date': doc.data().date,
             'eventDate': new Date(doc.data().date.seconds * 1000),
-            'classement': doc.data().classement.map(c => {
+            'classement': doc.data().individualClassement.map(c => {
               c.teamleader = {}
               return c
             }).sort((a, b) => a.rank - b.rank)
