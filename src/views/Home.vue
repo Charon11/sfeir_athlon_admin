@@ -82,6 +82,9 @@ export default {
       }
     }
   },
+  /**
+   * Hook to create vue component
+   */
   created () {
     this.getTeamLeaders()
     this.getEvents()
